@@ -10,7 +10,7 @@ from termania.constants import BASE_URL
 @pytest.fixture
 def fake_entry_index_data(faker):
     return dict(
-        absolute_index=faker.random_int(min=0, max=1_000_000, step=1),
+        absolute_index=faker.random_int(min=0, max=1000000, step=1),
         relative_index=faker.random_int(min=0, max=10, step=1),
         query=faker.word(),
         dictionary_id=faker.random_int(min=8, max=142, step=1),
@@ -20,9 +20,40 @@ def fake_entry_index_data(faker):
 @pytest.fixture
 def fake_entry_data(faker):
     headword = faker.word()
-    entry_id = faker.random_int(min=0, max=1_000_000, step=1)
+    entry_id = faker.random_int(min=0, max=1000000, step=1)
     dictionary_id = faker.random_int(min=8, max=142, step=1)
-    xml = f"""<?xml version="1.0" encoding="utf-8"?><response xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://api.termania.net/1.0/get-entry/result"><dictionary_id>{dictionary_id}</dictionary_id><entry_id>{entry_id}</entry_id><headword>{headword}</headword><html_content><p xmlns="http://www.w3.org/1999/xhtml" xmlns:e="urn:STP_XMLDATA"><span class="color_orange font_xlarge strong">{headword} </span><span class="color_lightdark font_small italic">({faker.word()}) </span><span class="color_lightdark font_small">{faker.word()}, </span><span class="color_lightdark font_small">{choice(("m", "ž"))}. sp. </span><br /><br /><span class="italic font_small color_lightdark">Oblike: </span><span class="">{", ".join((faker.words(nb=faker.random_int(min=1, max=10))))} </span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{faker.word()} </span><br /><span class="italic font_small color_lightdark">Povezava spredaj: </span><span class="font_large">{", ".join((faker.words(nb=faker.random_int(min=1, max=4))))} </span><span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span><span class="color_lightdark font_small italic"><br />Nemški prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span>, <span class="color_dark font_xlarge">{faker.word()}</span><span class="color_lightdark font_small italic"><br />Albanski prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span><span class="color_lightdark font_small italic"><br />Francoski prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span></span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{faker.word()} </span><br /><span class="italic font_small color_lightdark">Povezava spredaj: </span><span class="font_large">{", ".join(faker.words(nb=faker.random_int(min=1, max=4)))} </span><span class="color_lightdark font_small italic"><br />Slovenska sopomenka: </span><span class="font_large">{faker.word()}</span><span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span>, <span class="color_dark font_xlarge">{faker.word()}</span>, <span class="color_dark font_xlarge">{faker.word()}</span>, <span class="color_dark font_xlarge">{" ".join(faker.words(nb=2))}</span><span class="color_lightdark font_small italic"><br />Nemški prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span><span class="color_lightdark font_small italic"><br />Francoski prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span></span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{faker.word()} </span>(<span class="italic">{faker.word()}</span>)<span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span></span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{faker.word()} </span>(<span class="italic">{" ".join(faker.words(nb=2))}</span>)<span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{faker.word()}</span></span></p></html_content></response>"""
+    xml = """<?xml version="1.0" encoding="utf-8"?><response xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://api.termania.net/1.0/get-entry/result"><dictionary_id>{}</dictionary_id><entry_id>{}</entry_id><headword>{}</headword><html_content><p xmlns="http://www.w3.org/1999/xhtml" xmlns:e="urn:STP_XMLDATA"><span class="color_orange font_xlarge strong">{} </span><span class="color_lightdark font_small italic">({}) </span><span class="color_lightdark font_small">{}, </span><span class="color_lightdark font_small">{}. sp. </span><br /><br /><span class="italic font_small color_lightdark">Oblike: </span><span class="">{} </span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{} </span><br /><span class="italic font_small color_lightdark">Povezava spredaj: </span><span class="font_large">{} </span><span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{}</span><span class="color_lightdark font_small italic"><br />Nemški prevod: </span><span class="color_dark font_xlarge">{}</span>, <span class="color_dark font_xlarge">{}</span><span class="color_lightdark font_small italic"><br />Albanski prevod: </span><span class="color_dark font_xlarge">{}</span><span class="color_lightdark font_small italic"><br />Francoski prevod: </span><span class="color_dark font_xlarge">{}</span></span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{} </span><br /><span class="italic font_small color_lightdark">Povezava spredaj: </span><span class="font_large">{} </span><span class="color_lightdark font_small italic"><br />Slovenska sopomenka: </span><span class="font_large">{}</span><span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{}</span>, <span class="color_dark font_xlarge">{}</span>, <span class="color_dark font_xlarge">{}</span>, <span class="color_dark font_xlarge">{}</span><span class="color_lightdark font_small italic"><br />Nemški prevod: </span><span class="color_dark font_xlarge">{}</span><span class="color_lightdark font_small italic"><br />Francoski prevod: </span><span class="color_dark font_xlarge">{}</span></span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{} </span>(<span class="italic">{}</span>)<span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{}</span></span><hr style="color: #e3e3e3;background-color: #e3e3e3; height: 1px;border: 0 none;" /><span class=""><span class="italic font_small color_lightdark">Pomen: </span><span class="color_orange">{} </span>(<span class="italic">{}</span>)<span class="color_lightdark font_small italic"><br />Angleški prevod: </span><span class="color_dark font_xlarge">{}</span></span></p></html_content></response>""".format(
+        (dictionary_id),
+        (entry_id),
+        (headword),
+        (headword),
+        (faker.word()),
+        (faker.word()),
+        (choice(("m", "ž"))),
+        (", ".join((faker.words(nb=faker.random_int(min=1, max=10))))),
+        (faker.word()),
+        (", ".join((faker.words(nb=faker.random_int(min=1, max=4))))),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (", ".join(faker.words(nb=faker.random_int(min=1, max=4)))),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (" ".join(faker.words(nb=2))),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (faker.word()),
+        (" ".join(faker.words(nb=2))),
+        (faker.word()),
+    )
     return dict(
         headword=headword, entry_id=entry_id, dictionary_id=dictionary_id, xml=xml
     )
