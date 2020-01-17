@@ -1,4 +1,4 @@
-# :books: Termania.net API - Python Client :snake:
+# Termania.net API - Python Client
 
 A Python wrapper for the Termania.net REST API. Easily interact with the Termania.net REST API using this library.
 
@@ -94,4 +94,16 @@ dictionaries = termania_api.get_dictionaries()
     8: Dictionary(id=8, name='Besedišče slovenskega jezika z oblikoslovnimi podatki', author='ZRC SAZU, Inštitut za slovenski jezik Frana Ramovša in avtorji', languages=('sl', 'sl'), lingualism=1, type=1), 
     # etc ... trimmed to keep the README manageable
 }
+```
+
+## Testing
+
+```bash
+git clone https://github.com/techouse/termania-api
+cd termania-api                  
+python3 -m venv env
+source env/bin/activate
+pip install -e .
+pip install -r requirements_dev.txt
+tox
 ```
