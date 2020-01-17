@@ -1,4 +1,3 @@
-from codecs import open
 from os.path import abspath, dirname, join
 
 from setuptools import setup
@@ -10,10 +9,10 @@ packages = ["termania"]
 requires = ["bs4>=0.0.1", "beautifulsoup4>=4.8.2", "requests>=2.22.0"]
 
 about = {}
-with open(join(here, "termania", "__version__.py"), "r", "utf-8") as fh:
+with open(join(here, "termania", "__version__.py"), "r") as fh:
     exec(fh.read(), about)
 
-with open(join(here, "README.md"), "r", "utf-8") as fh:
+with open(join(here, "README.md"), "r") as fh:
     readme = fh.read()
 
 setup(
@@ -27,7 +26,7 @@ setup(
     url=about["__url__"],
     packages=packages,
     include_package_data=True,
-    python_requires=">=3.5",
+    python_requires='~=3.5',
     install_requires=requires,
     license=about["__license__"],
     classifiers=[
