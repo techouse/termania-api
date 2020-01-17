@@ -1,0 +1,2 @@
+[run]
+omit = termania/__version__.py
