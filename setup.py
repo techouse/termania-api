@@ -30,7 +30,6 @@ setup(
     python_requires=">=3.5",
     install_requires=requires,
     license=about["__license__"],
-    zip_safe=False,
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
