@@ -13,7 +13,7 @@ class TestAPI:
         requests_helpers.mock_entry_request(fake_entry_data)
         soup = BeautifulSoup(fake_entry_data["xml"], "lxml-xml")
 
-        client = API(licence_key=faker.random_number(digits=None, fix_len=False))
+        client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert Entry(
             dictionary_id=fake_entry_data["dictionary_id"],
@@ -41,7 +41,7 @@ class TestAPI:
         requests_helpers.mock_entry_index_request(fake_entry_index_data)
         requests_helpers.mock_entry_request(fake_entry_data)
 
-        client = API(licence_key=faker.random_number(digits=None, fix_len=False))
+        client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert None is client.search(
             fake_entry_index_data["query"], fake_entry_index_data["dictionary_id"],
@@ -50,7 +50,7 @@ class TestAPI:
     def test_get_dictionaries(self, requests_helpers, fake_dictionaries_data, faker):
         requests_helpers.mock_get_dictionaries(fake_dictionaries_data)
 
-        client = API(licence_key=faker.random_number(digits=None, fix_len=False))
+        client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert {
             dictionary["Id"]: Dictionary(
@@ -71,7 +71,7 @@ class TestAPI:
             fake_dictionaries_data, status_code=faker.random_int(min=400, max=599)
         )
 
-        client = API(licence_key=faker.random_number(digits=None, fix_len=False))
+        client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert None is client.get_dictionaries()
 
@@ -80,6 +80,6 @@ class TestAPI:
     ):
         requests_helpers.mock_get_dictionaries(faker.paragraph(), raw_data=True)
 
-        client = API(licence_key=faker.random_number(digits=None, fix_len=False))
+        client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert None is client.get_dictionaries()
