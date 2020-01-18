@@ -1,5 +1,6 @@
 """Termania.net API client."""
 
+from importlib import util
 from typing import Dict, Optional
 from urllib.parse import urljoin
 
@@ -86,7 +87,9 @@ class API:
         )
         if 200 <= res.status_code < 300:
             try:
-                soup = BeautifulSoup(res.text, "html.parser")
+                soup = BeautifulSoup(
+                    res.text, "lxml-xml" if util.find_spec("lxml") else "html.parser"
+                )
                 return Entry(
                     dictionary_id=int(soup.find("dictionary_id").get_text().strip()),
                     entry_id=int(soup.find("entry_id").get_text().strip()),
