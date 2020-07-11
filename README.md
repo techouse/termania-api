@@ -1,4 +1,5 @@
 [![PyPI](https://img.shields.io/pypi/v/termania)](https://pypi.org/project/termania/)
+[![Downloads](https://pepy.tech/badge/termania)](https://pepy.tech/project/termania)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/termania)](https://pypi.org/project/termania/)
 [![GitHub license](https://img.shields.io/github/license/techouse/termania-api)](https://github.com/techouse/termania-api/blob/master/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
