@@ -21,7 +21,8 @@ class TestAPI:
             headword=fake_entry_data["headword"],
             html=soup.find("html_content").decode_contents(),
         ) == client.search(
-            fake_entry_index_data["query"], fake_entry_index_data["dictionary_id"],
+            fake_entry_index_data["query"],
+            fake_entry_index_data["dictionary_id"],
         )
 
     @pytest.mark.parametrize(
@@ -44,7 +45,8 @@ class TestAPI:
         client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert None is client.search(
-            fake_entry_index_data["query"], fake_entry_index_data["dictionary_id"],
+            fake_entry_index_data["query"],
+            fake_entry_index_data["dictionary_id"],
         )
 
     def test_get_dictionaries(self, requests_helpers, fake_dictionaries_data, faker):

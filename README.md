@@ -4,7 +4,7 @@
 [![GitHub license](https://img.shields.io/github/license/techouse/termania-api)](https://github.com/techouse/termania-api/blob/master/LICENSE)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/0c9ebb78f81a4b77a3963f74ecb08cc3)](https://www.codacy.com/manual/techouse/termania-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=techouse/termania-api&amp;utm_campaign=Badge_Grade)
-[![Build Status](https://travis-ci.com/techouse/termania-api.svg?branch=master)](https://travis-ci.com/techouse/termania-api)
+[![Build Status](https://github.com/techouse/termania-api/workflows/Test/badge.svg)](https://github.com/techouse/termania-api/actions?query=workflow%3ATest)
 [![codecov](https://codecov.io/gh/techouse/termania-api/branch/master/graph/badge.svg)](https://codecov.io/gh/techouse/termania-api)
 
 # Termania.net API - Python Client

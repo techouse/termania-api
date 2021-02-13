@@ -23,7 +23,8 @@ class TestAPI:
         client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert EntryIndex(**fake_entry_index_data) == client._get_entry_index(
-            fake_entry_index_data["query"], fake_entry_index_data["dictionary_id"],
+            fake_entry_index_data["query"],
+            fake_entry_index_data["dictionary_id"],
         )
 
     def test_get_entry_index_http_error(
@@ -36,7 +37,8 @@ class TestAPI:
         client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert None is client._get_entry_index(
-            fake_entry_index_data["query"], fake_entry_index_data["dictionary_id"],
+            fake_entry_index_data["query"],
+            fake_entry_index_data["dictionary_id"],
         )
 
     def test_get_entry_index_bad_data(
@@ -47,7 +49,8 @@ class TestAPI:
         client = API(licence_key=faker.random_number(digits=7, fix_len=False))
 
         assert None is client._get_entry_index(
-            fake_entry_index_data["query"], fake_entry_index_data["dictionary_id"],
+            fake_entry_index_data["query"],
+            fake_entry_index_data["dictionary_id"],
         )
 
     def test_get_entry(self, requests_helpers, fake_entry_data, faker):

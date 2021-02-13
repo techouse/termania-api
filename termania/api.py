@@ -24,7 +24,9 @@ class API:
             raise ValueError("Invalid licence key!")
         self.api.params.update({"licenceKey": licence_key})
 
-    def get_dictionaries(self) -> Optional[Dict[int, Dictionary]]:
+    def get_dictionaries(
+        self,
+    ) -> Optional[Dict[int, Dictionary]]:  # pylint: disable=E1136
         """Get a dictionary of dictionaries."""
         res = self.api.get(urljoin(BASE_URL, "dictionary/list"))
         if 200 <= res.status_code < 300:
@@ -45,18 +47,22 @@ class API:
                 return None
         return None
 
-    def search(self, query: str, dictionary_id: int) -> Optional[Entry]:
+    def search(
+        self, query: str, dictionary_id: int
+    ) -> Optional[Entry]:  # pylint: disable=E1136
         """Search the Termania.net API for a query in a particular dictionary."""
         entry_index = self._get_entry_index(query, dictionary_id)
         if (
-            entry_index  # pylint: disable=C0330
-            and entry_index.absolute_index > -1  # pylint: disable=C0330
-            and entry_index.relative_index > -1  # pylint: disable=C0330
+            entry_index
+            and entry_index.absolute_index > -1
+            and entry_index.relative_index > -1
         ):
             return self._get_entry(entry_index.absolute_index, dictionary_id)
         return None
 
-    def _get_entry_index(self, query: str, dictionary_id: int) -> Optional[EntryIndex]:
+    def _get_entry_index(
+        self, query: str, dictionary_id: int
+    ) -> Optional[EntryIndex]:  # pylint: disable=E1136
         """Get the EntryIndex from the Termania.net API."""
         res = self.api.get(
             urljoin(BASE_URL, "search/entry-index"),
@@ -75,7 +81,9 @@ class API:
                 return None
         return None
 
-    def _get_entry(self, entry_id: int, dictionary_id: int) -> Optional[Entry]:
+    def _get_entry(
+        self, entry_id: int, dictionary_id: int
+    ) -> Optional[Entry]:  # pylint: disable=E1136
         """Get the Entry from the Termania.net API."""
         res = self.api.get(
             urljoin(BASE_URL, "search/get-entry"),
